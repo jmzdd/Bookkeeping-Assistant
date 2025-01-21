@@ -2,16 +2,26 @@ import flet as ft
 import random
 from pages import data_edit
 from pages import history
-
+Imgpath = [f"./assets/GIF/0.jpg",
+        f"./assets/GIF/2.gif",
+        f"./assets/GIF/3.gif",
+        f"./assets/GIF/4.gif",
+        f"./assets/GIF/5.gif",
+        f"./assets/GIF/6.gif",
+        f"./assets/GIF/7.gif",
+        f"./assets/GIF/8.gif",
+        f"./assets/GIF/9.gif",
+        f"./assets/GIF/10.gif"]
 def main(page: ft.Page):
     page.scroll= "auto"
     # 创建页面内容的占位符
     page_content = ft.Column()
     random_number = random.randint(1, 10)
+    text=Imgpath[random_number-1]
     # 更新页面内容的函数
     def update_page_content(selected_index: int):
         if selected_index == 0:
-            page_content.controls = [data_edit.data_edit_page()]
+            page_content.controls = [data_edit.data_edit_page(page)]
         elif selected_index == 1:
             page_content.controls = [history.history_page()]
         page.update()
@@ -52,7 +62,7 @@ def main(page: ft.Page):
                     ),
                     ft.TextSpan("构建")
                 ]),
-                ft.Text("由RWT用♥为你制作"),
+                ft.Text("由jmzdd用♥为你制作"),
                 ft.Text(spans=[
                     ft.TextSpan("Github主页："),
                     ft.TextSpan(
@@ -80,9 +90,9 @@ def main(page: ft.Page):
                 label="数据编辑",
             ),
             ft.NavigationBarDestination(
-                icon=ft.Icons.WORK_HISTORY_OUTLINED,
-                selected_icon=ft.Icons.WORK_HISTORY,
-                label="历史记录",
+                icon=ft.Icons.FEATURED_PLAY_LIST_OUTLINED,
+                selected_icon=ft.Icons.FEATURED_PLAY_LIST,
+                label="账单生成",
             )
         ],
         # 假设 e 是 ControlEvent 对象
@@ -106,12 +116,12 @@ def main(page: ft.Page):
                 ft.Text("欢迎使用记账小助手！", size=25, weight=ft.FontWeight.BOLD, font_family="MiSans"),
                 ft.Text("辛苦了一天，记得好好休息哦~", size=15),
                 ft.Image(
-                    src=f"./assets/GIF/1.gif",
+                    src=text,
                     width=200,
                     height=200
                 ),
                 ft.Container(height=25),  # 使用Container来创建间距
-                ft.ElevatedButton("🎉进入应用🎉", style=ft.ButtonStyle(text_style=ft.TextStyle(color=ft.colors.BLACK, font_family="MiSans")), on_click=lambda e: switch_to_main(e))
+                ft.ElevatedButton("🎉进入应用🎉", style=ft.ButtonStyle(text_style=ft.TextStyle(color=ft.Colors.BLACK, font_family="MiSans")), on_click=lambda e: switch_to_main(e))
             ],
             alignment=ft.MainAxisAlignment.CENTER,
             horizontal_alignment=ft.CrossAxisAlignment.CENTER),
