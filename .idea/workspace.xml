@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f5e35c3-2b23-472a-a39f-d45ff4d2ac76" name="更改" comment="提交应用的基本框架">
-      <change afterPath="$PROJECT_DIR$/text.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/data_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/data_edit.py" afterDir="false" />
+    <list default="true" id="6f5e35c3-2b23-472a-a39f-d45ff4d2ac76" name="更改" comment="更新应用">
+      <change afterPath="$PROJECT_DIR$/build/apk/app-release.apk" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +89,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737383864042</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="更新应用">
+      <option name="closed" value="true" />
+      <created>1737463176790</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737463176790</updated>
+    </task>
+    <task id="LOCAL-00005" summary="更新应用">
+      <option name="closed" value="true" />
+      <created>1737463319669</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1737463319669</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,6 +122,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="基本框架" />
     <MESSAGE value="提交应用的基本框架" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交应用的基本框架" />
+    <MESSAGE value="更新应用" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新应用" />
   </component>
 </project>
