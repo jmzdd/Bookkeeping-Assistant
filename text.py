@@ -1,49 +1,48 @@
 import flet as ft
 
 
-def main(page: ft.Page):
-    def handle_change(e: ft.ControlEvent):
-        print(f"change on panel with index {e.data}")
+def main(page):
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-    def handle_delete(e: ft.ControlEvent):
-        panel.controls.remove(e.control.data)
-        page.update()
-
-    panel = ft.ExpansionPanelList(
-        expand_icon_color=ft.Colors.AMBER,
-        elevation=8,
-        divider_color=ft.Colors.AMBER,
-        on_change=handle_change,
-        controls=[
-            ft.ExpansionPanel(
-                # has no header and content - placeholders will be used
-                bgcolor=ft.Colors.BLUE_400,
-                expanded=True,
-            )
-        ]
-    )
-
-    colors = [
-        ft.Colors.GREEN_500,
-        ft.Colors.BLUE_800,
-        ft.Colors.RED_800,
+    selected_fruit_ref = ft.Ref[ft.Text]()
+    fruits = [
+        "苹果",
+        "香蕉",
+        "橙子",
     ]
 
-    for i in range(3):
-        exp = ft.ExpansionPanel(
-            bgcolor=colors[i % len(colors)],
-            header=ft.ListTile(title=ft.Text(f"Panel {i}")),
-        )
+    def handle_picker_change(e):
+        selected_fruit_ref.current.value = fruits[int(e.data)]
+        page.update()
 
-        exp.content = ft.ListTile(
-            title=ft.Text(f"This is in Panel {i}"),
-            subtitle=ft.Text(f"Press the icon to delete panel {i}"),
-            trailing=ft.IconButton(ft.Icons.DELETE, on_click=handle_delete, data=exp),
-        )
+    cupertino_picker = ft.CupertinoPicker(
+        selected_index=0,  # 修改初始索引为0
+        magnification=1.22,
+        squeeze=1.2,
+        use_magnifier=True,
+        on_change=handle_picker_change,
+        controls=[ft.Text(value=f) for f in fruits],
+    )
 
-        panel.controls.append(exp)
-
-    page.add(panel)
+    page.add(
+        ft.Row(
+            tight=True,
+            controls=[
+                ft.Text("选择水果:", size=23),
+                ft.TextButton(
+                    content=ft.Text(value=fruits[0], ref=selected_fruit_ref, size=23),  # 修改初始值索引为0
+                    style=ft.ButtonStyle(color=ft.Colors.BLUE),
+                    on_click=lambda e: page.open(
+                        ft.CupertinoBottomSheet(
+                            cupertino_picker,
+                            height=216,
+                            padding=ft.padding.only(top=6),
+                        )
+                    ),
+                ),
+            ],
+        ),
+    )
 
 
 ft.app(main)

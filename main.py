@@ -2,6 +2,7 @@ import flet as ft
 import random
 from pages import data_edit
 from pages import history
+
 Imgpath = [f"./assets/GIF/0.jpg",
         f"./assets/GIF/2.gif",
         f"./assets/GIF/3.gif",
@@ -18,6 +19,7 @@ def main(page: ft.Page):
     page_content = ft.Column()
     random_number = random.randint(1, 10)
     text=Imgpath[random_number-1]
+
     # 更新页面内容的函数
     def update_page_content(selected_index: int):
         if selected_index == 0:
@@ -28,6 +30,16 @@ def main(page: ft.Page):
 
     # 应用标题栏
     page.appbar = ft.AppBar(
+        leading=ft.Row([
+            ft.Container(
+                width=1
+            ),
+            ft.IconButton(
+                icon=ft.Icons.ADD_CIRCLE,
+                icon_size=20,
+                on_click=lambda e: page.open(about_windows)
+            )
+        ]),
         leading_width=40,
         center_title=True,
         title=ft.Text("记账小助手", weight=ft.FontWeight.BOLD, font_family="MiSans"),
@@ -38,7 +50,7 @@ def main(page: ft.Page):
                 on_click=lambda e: page.open(about_windows)
             ),
             ft.Container(
-                width=10
+                width=12
             )
         ]
     )
