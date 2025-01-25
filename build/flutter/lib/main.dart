@@ -38,7 +38,7 @@ String appDir = "";
 Map<String, String> environmentVariables = {};
 
 void main(List<String> args) async {
-  _args = args;
+  _args = List<String>.from(args);
 
   runApp(FutureBuilder(
       future: prepareApp(),
