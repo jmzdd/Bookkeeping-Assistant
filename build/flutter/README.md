@@ -1,4 +1,4 @@
-# Bookkeeping_Assistant
+# Bookkeeping-Assistant
 
 
 
@@ -6,7 +6,7 @@
 
 * `bookkeeping_assistant` - project name - lowercase, no spaces, i.e. "snake_case" identifier - used as a package name, iOS/macOS/Android bundle name and Windows/Linux executable file name.
 * `` - project description.
-* `Bookkeeping_Assistant` - project display name that is shown in window titles and about app dialogs.
+* `Bookkeeping-Assistant` - project display name that is shown in window titles and about app dialogs.
 * `com.flet` - org name in reverse domain name notation, e.g. `com.mycompany.myproject`.
 * `Your Company` - the name of the company.
 * `Copyright (c) 2023 Your Company` - the name of the company.

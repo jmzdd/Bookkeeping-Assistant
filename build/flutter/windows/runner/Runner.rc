@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "Your Company" "\0"
-            VALUE "FileDescription", "Bookkeeping_Assistant" "\0"
+            VALUE "FileDescription", "Bookkeeping-Assistant" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "bookkeeping_assistant" "\0"
             VALUE "LegalCopyright", "Copyright (c) 2023 Your Company" "\0"
             VALUE "OriginalFilename", "bookkeeping_assistant.exe" "\0"
-            VALUE "ProductName", "Bookkeeping_Assistant" "\0"
+            VALUE "ProductName", "Bookkeeping-Assistant" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

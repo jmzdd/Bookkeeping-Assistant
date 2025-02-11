@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = Bookkeeping_Assistant
+PRODUCT_NAME = Bookkeeping-Assistant
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.flet.bookkeeping_assistant
+PRODUCT_BUNDLE_IDENTIFIER = com.flet.bookkeeping-assistant
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright (c) 2023 Your Company. All rights reserved.
