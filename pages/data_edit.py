@@ -17,16 +17,11 @@ def data_edit_page(page: ft.Page):
     # 使用 Column 布局将多个组件垂直排列
     column = ft.Column(
         [
-            # ft.ElevatedButton(
-            #     "时间选择按钮",
-            #     icon=ft.Icons.TIME_TO_LEAVE,
-            #     on_click=lambda _: page.open(time_picker),
-            # ),
             ft.ExpansionPanelList(
                 elevation=5,
                 controls=[
                     ft.ExpansionPanel(
-                        header=ft.ListTile(title=ft.Text("基本设置",weight=ft.FontWeight.NORMAL, font_family="MiSans")),
+                        header=ft.ListTile(title=ft.Text("数据设置",weight=ft.FontWeight.NORMAL, font_family="MiSans")),
                         expanded=True,
                         content=ft.Column([
                             ft.ListTile(
@@ -39,7 +34,7 @@ def data_edit_page(page: ft.Page):
                             ),
 
                             ft.ListTile(
-                                leading=ft.Icon(ft.Icons.ATTACH_MONEY),
+                                leading=ft.Icon(ft.Icons.ACCESS_TIME),
                                 title=ft.Row([
                                     ft.ElevatedButton(
                                         "时间选择按钮",
@@ -64,7 +59,6 @@ def data_edit_page(page: ft.Page):
                                             )
                                         ),
                                     ),
-                                    ft.TextField(label="几",suffix_text="日"),
                                 ]),
                             ),
                             ft.Row([

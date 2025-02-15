@@ -30,17 +30,6 @@ def main(page: ft.Page):
 
     # 应用标题栏
     page.appbar = ft.AppBar(
-        leading=ft.Row([
-            ft.Container(
-                width=1
-            ),
-            ft.IconButton(
-                icon=ft.Icons.ADD_CIRCLE,
-                icon_size=20,
-                on_click=lambda e: page.open(about_windows)
-            )
-        ]),
-        leading_width=40,
         center_title=True,
         title=ft.Text("记账小助手", weight=ft.FontWeight.BOLD, font_family="MiSans"),
         actions=[
