@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f5e35c3-2b23-472a-a39f-d45ff4d2ac76" name="更改" comment="更新代码">
-      <change beforePath="$PROJECT_DIR$/.idea/Bookkeeping_Assistant.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Bookkeeping_Assistant.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/data_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/data_edit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737733578901</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="更新代码">
+      <option name="closed" value="true" />
+      <created>1739636113383</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739636113383</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

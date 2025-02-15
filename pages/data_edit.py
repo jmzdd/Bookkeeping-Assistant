@@ -10,9 +10,12 @@ def data_edit_page(page: ft.Page):
         page.add(ft.Text(f"DatePicker dismissed"))
 
     time_picker = ft.TimePicker(
-        confirm_text="Confirm",
-        error_invalid_text="Time out of range",
-        help_text="Pick your time slot",
+        confirm_text="确认",
+        cancel_text="取消",
+        error_invalid_text="时间超出范围",
+        help_text="请选择时间",
+        hour_label_text="小时",
+        minute_label_text="分钟",
     )
     # 使用 Column 布局将多个组件垂直排列
     column = ft.Column(
@@ -37,11 +40,6 @@ def data_edit_page(page: ft.Page):
                                 leading=ft.Icon(ft.Icons.ACCESS_TIME),
                                 title=ft.Row([
                                     ft.ElevatedButton(
-                                        "时间选择按钮",
-                                        icon=ft.Icons.TIME_TO_LEAVE,
-                                        on_click=lambda _: page.open(time_picker),
-                                    ),
-                                    ft.ElevatedButton(
                                         "设置日期",
                                         icon=ft.Icons.CALENDAR_MONTH,
                                         on_click=lambda e: page.open(
@@ -52,18 +50,28 @@ def data_edit_page(page: ft.Page):
                                                 help_text="选择日期",
                                                 field_hint_text="yyyy/mm/dd",
                                                 date_picker_entry_mode=ft.DatePickerEntryMode.INPUT,
-                                                first_date=datetime.datetime(year=2023, month=10, day=1),
-                                                last_date=datetime.datetime(year=2024, month=10, day=1),
+                                                # first_date=datetime.datetime(year=2023, month=10, day=1),
+                                                # last_date=datetime.datetime(year=2024, month=10, day=1),
                                                 on_change=handle_change,
                                                 on_dismiss=handle_dismissal,
                                             )
                                         ),
                                     ),
+                                    ft.ElevatedButton(
+                                        "开始时间",
+                                        icon=ft.Icons.AV_TIMER,
+                                        on_click=lambda _: page.open(time_picker),
+                                    ),
+                                    ft.ElevatedButton(
+                                        "结束时间",
+                                        icon=ft.Icons.AV_TIMER,
+                                        on_click=lambda _: page.open(time_picker),
+                                    ),
                                 ]),
                             ),
                             ft.Row([
                                 ft.ElevatedButton(
-                                    text="确认提交",
+                                    text="添加数据",
                                     icon=ft.Icons.DONE,
                                     icon_color="green",
                                     style=ft.ButtonStyle(
@@ -71,7 +79,27 @@ def data_edit_page(page: ft.Page):
                                             font_family="MiSans"
                                         )
                                     )
-                                )
+                                ),
+                                ft.ElevatedButton(
+                                    text="删除数据",
+                                    icon=ft.Icons.DELETE,
+                                    icon_color="red",
+                                    style=ft.ButtonStyle(
+                                        text_style=ft.TextStyle(
+                                            font_family="MiSans"
+                                        )
+                                    )
+                                ),
+                                ft.ElevatedButton(
+                                    text="清空数据",
+                                    icon=ft.Icons.DELETE,
+                                    icon_color="red",
+                                    style=ft.ButtonStyle(
+                                        text_style=ft.TextStyle(
+                                            font_family="MiSans"
+                                        )
+                                    )
+                                ),
                             ],alignment=ft.MainAxisAlignment.CENTER),
                             ft.Container(
                                 height=5
