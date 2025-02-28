@@ -2,6 +2,15 @@ import flet as ft
 from data_manager import DataManager
 from datetime import datetime
 
+# # 保存时间差
+# time_diffs = []
+# # 保存工作日期
+# work_days = []
+# # 保存开始时间
+# start_times = []
+# # 保存结束时间
+# end_times = []
+
 def data_edit_page(page: ft.Page):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
@@ -17,6 +26,7 @@ def data_edit_page(page: ft.Page):
         data_manager.set_end_time(end_time_picker.value)
 
     def add_data(e):
+        user_day = data_manager.get_work_day()
         start_time = data_manager.get_begin_time()
         end_time = data_manager.get_end_time()
 
@@ -27,12 +37,51 @@ def data_edit_page(page: ft.Page):
 
         time_diff = end_datetime - start_datetime
 
+        # 将时间差转换为小时数
+        hours_diff = time_diff.total_seconds() / 3600
+
         # 创建新的控件并添加到 dynamic_column
-        new_control = ft.Text(f"Time difference: {time_diff}")
-        dynamic_column.controls.append(new_control)
+        new_control = ft.Text(f"于{user_day}, 从{start_time}到{end_time}, 共{hours_diff:.1f}小时")
+        test_column.controls.append(new_control)
+
+
+
+        data_manager.add_data(data_manager.time_diffs.append(time_diff), data_manager.work_days.append(user_day), data_manager.start_times.append(start_time), data_manager.end_times.append(end_time))
+        # 将数据保存到全局变量中
+        # time_diffs.append(time_diff)
+        # work_days.append(user_day)
+        # start_times.append(start_time)
+        # end_times.append(end_time)
 
         # 更新页面以显示新控件
         page.update()
+
+    # 定义删除数据的函数
+    def delete_data(e):
+        if test_column.controls:
+            # 移除最后一个控件
+            test_column.controls.pop()
+            # 移除存储的数据
+            data_manager.time_diffs.pop()
+            data_manager.work_days.pop()
+            data_manager.start_times.pop()
+            data_manager.end_times.pop()
+            # 更新页面以反映更改
+            page.update()
+
+    # 定义清空数据的函数
+    def clear_data(e):
+        # 清空所有控件
+        test_column.controls.clear()
+        # 清空所有存储的数据
+        data_manager.time_diffs.clear()
+        data_manager.work_days.clear()
+        data_manager.start_times.clear()
+        data_manager.end_times.clear()
+        # 更新页面以反映更改
+        page.update()
+
+
 
     end_time_picker = ft.TimePicker(
         confirm_text="确认",
@@ -41,6 +90,7 @@ def data_edit_page(page: ft.Page):
         help_text="请选择时间",
         hour_label_text="小时",
         minute_label_text="分钟",
+        time_picker_entry_mode=ft.TimePickerEntryMode.INPUT,
         on_change=select_end_time,
     )
 
@@ -51,11 +101,39 @@ def data_edit_page(page: ft.Page):
         help_text="请选择时间",
         hour_label_text="小时",
         minute_label_text="分钟",
+        time_picker_entry_mode=ft.TimePickerEntryMode.INPUT,
         on_change=select_begin_time,
     )
 
     # 动态添加控件的容器
-    dynamic_column = ft.Column(controls=[])
+    test_column = ft.Column(controls=[])
+
+    dynamic_column = ft.Column(controls=[
+        ft.Container(
+            content=
+            ft.Column(controls=[
+                ft.Row([
+                        ft.Icon(name=ft.Icons.CIRCLE, color=ft.Colors.RED, size=20),
+                        ft.Icon(name=ft.Icons.CIRCLE, color=ft.Colors.ORANGE, size=20),
+                        ft.Icon(name=ft.Icons.CIRCLE, color=ft.Colors.GREEN, size=20),
+                ]),
+                # 终端容器
+                ft.Container(
+                    content=test_column,
+                    margin=10,
+                    padding=10,
+                    alignment=ft.alignment.center,
+                    border_radius=10,
+                    bgcolor=ft.Colors.OUTLINE_VARIANT,
+                ),
+            ]),
+            margin=10,
+            padding=10,
+            alignment=ft.alignment.center,
+            border_radius=10,
+            bgcolor=ft.colors.BLUE_GREY_200,
+        ),
+    ])
 
     main_column = ft.Column(
         controls=[
@@ -119,6 +197,7 @@ def data_edit_page(page: ft.Page):
                                     text="删除数据",
                                     icon=ft.Icons.DELETE,
                                     icon_color="red",
+                                    on_click=delete_data,  # 绑定删除数据的函数
                                     style=ft.ButtonStyle(
                                         text_style=ft.TextStyle(font_family="MiSans")
                                     )
@@ -127,6 +206,7 @@ def data_edit_page(page: ft.Page):
                                     text="清空数据",
                                     icon=ft.Icons.CLEANING_SERVICES,
                                     icon_color="yellow",
+                                    on_click=clear_data,  # 绑定清空数据的函数
                                     style=ft.ButtonStyle(
                                         text_style=ft.TextStyle(font_family="MiSans")
                                     )
@@ -142,5 +222,4 @@ def data_edit_page(page: ft.Page):
         alignment=ft.MainAxisAlignment.START,
         horizontal_alignment=ft.CrossAxisAlignment.START,
     )
-
     return main_column

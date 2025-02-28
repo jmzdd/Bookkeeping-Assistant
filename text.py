@@ -1,21 +1,23 @@
 import flet as ft
 from data_manager import DataManager
 from datetime import datetime
+
+# 在页面顶部定义一个全局变量用于保存时间差数据
+time_diffs = []
+
 def data_edit_page(page: ft.Page):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
-    data_manager= DataManager()
+    data_manager = DataManager()
 
     def select_day(e):
         data_manager.set_work_day(e.control.value.strftime('%Y-%m-%d'))
-        # page.add(ft.Text(data_manager.get_work_day()))
+
     def select_begin_time(e):
         data_manager.set_begin_time(begin_time_picker.value)
-        page.add(ft.Text(data_manager.get_begin_time()))
 
     def select_end_time(e):
         data_manager.set_end_time(end_time_picker.value)
-        page.add(ft.Text(data_manager.get_end_time()))
 
     def add_data(e):
         start_time = data_manager.get_begin_time()
@@ -28,16 +30,31 @@ def data_edit_page(page: ft.Page):
 
         time_diff = end_datetime - start_datetime
 
-        page.add(ft.Text(f"Time difference: {time_diff}"))
-
-        # 创建新的控件
+        # 创建新的控件并添加到 dynamic_column
         new_control = ft.Text(f"Time difference: {time_diff}")
+        test_column.controls.append(new_control)
 
-        # 将新控件添加到 column 的 controls 列表中
-        column.controls.append(new_control)
+        # 将时间差数据保存到全局变量中
+        time_diffs.append(time_diff)
 
         # 更新页面以显示新控件
         page.update()
+
+    # 定义删除数据的函数
+    def delete_data(e):
+        if test_column.controls:
+            # 移除最后一个控件
+            test_column.controls.pop()
+            # 移除最后一个时间差数据
+            time_diffs.pop()
+            # 更新页面以反映更改
+            page.update()
+
+    # 在页面初始化时加载已保存的时间差数据
+    def load_saved_data():
+        for diff in time_diffs:
+            new_control = ft.Text(f"Time difference: {diff}")
+            test_column.controls.append(new_control)
 
     end_time_picker = ft.TimePicker(
         confirm_text="确认",
@@ -58,14 +75,44 @@ def data_edit_page(page: ft.Page):
         minute_label_text="分钟",
         on_change=select_begin_time,
     )
-    # 使用 Column 布局将多个组件垂直排列
-    column = ft.Column(
+
+    # 动态添加控件的容器
+    test_column = ft.Column(controls=[])
+
+    dynamic_column = ft.Column(controls=[
+        ft.Container(
+            content=
+            ft.Column(controls=[
+                ft.Row([
+                        ft.Icon(name=ft.Icons.CIRCLE, color=ft.Colors.RED, size=20),
+                        ft.Icon(name=ft.Icons.CIRCLE, color=ft.Colors.ORANGE, size=20),
+                        ft.Icon(name=ft.Icons.CIRCLE, color=ft.Colors.GREEN, size=20),
+                ]),
+                # 终端容器
+                ft.Container(
+                    content=test_column,
+                    margin=10,
+                    padding=10,
+                    alignment=ft.alignment.center,
+                    border_radius=10,
+                    bgcolor=ft.Colors.OUTLINE_VARIANT,
+                ),
+            ]),
+            margin=10,
+            padding=10,
+            alignment=ft.alignment.center,
+            border_radius=10,
+            bgcolor=ft.colors.BLUE_GREY_200,
+        ),
+    ])
+
+    main_column = ft.Column(
         controls=[
             ft.ExpansionPanelList(
                 elevation=5,
                 controls=[
                     ft.ExpansionPanel(
-                        header=ft.ListTile(title=ft.Text("数据设置",weight=ft.FontWeight.NORMAL, font_family="MiSans")),
+                        header=ft.ListTile(title=ft.Text("数据设置", weight=ft.FontWeight.NORMAL, font_family="MiSans")),
                         expanded=True,
                         content=ft.Column([
                             ft.ListTile(
@@ -76,7 +123,6 @@ def data_edit_page(page: ft.Page):
                                 leading=ft.Icon(ft.Icons.ATTACH_MONEY),
                                 title=ft.TextField(label="每小时多少钱"),
                             ),
-
                             ft.ListTile(
                                 leading=ft.Icon(ft.Icons.ACCESS_TIME),
                                 title=ft.Row([
@@ -91,8 +137,6 @@ def data_edit_page(page: ft.Page):
                                                 help_text="选择日期",
                                                 field_hint_text="yyyy/mm/dd",
                                                 date_picker_entry_mode=ft.DatePickerEntryMode.INPUT,
-                                                # first_date=datetime.datetime(year=2023, month=10, day=1),
-                                                # last_date=datetime.datetime(year=2024, month=10, day=1),
                                                 on_change=select_day,
                                             )
                                         ),
@@ -117,19 +161,16 @@ def data_edit_page(page: ft.Page):
                                     icon_color="green",
                                     on_click=add_data,
                                     style=ft.ButtonStyle(
-                                        text_style=ft.TextStyle(
-                                            font_family="MiSans"
-                                        )
+                                        text_style=ft.TextStyle(font_family="MiSans")
                                     )
                                 ),
                                 ft.ElevatedButton(
                                     text="删除数据",
                                     icon=ft.Icons.DELETE,
                                     icon_color="red",
+                                    on_click=delete_data,  # 绑定删除数据的函数
                                     style=ft.ButtonStyle(
-                                        text_style=ft.TextStyle(
-                                            font_family="MiSans"
-                                        )
+                                        text_style=ft.TextStyle(font_family="MiSans")
                                     )
                                 ),
                                 ft.ElevatedButton(
@@ -137,23 +178,19 @@ def data_edit_page(page: ft.Page):
                                     icon=ft.Icons.CLEANING_SERVICES,
                                     icon_color="yellow",
                                     style=ft.ButtonStyle(
-                                        text_style=ft.TextStyle(
-                                            font_family="MiSans"
-                                        )
+                                        text_style=ft.TextStyle(font_family="MiSans")
                                     )
                                 ),
-                            ],alignment=ft.MainAxisAlignment.CENTER),
-                            ft.Container(
-                                height=5
-                            )
+                            ], alignment=ft.MainAxisAlignment.CENTER),
+                            ft.Container(height=5)
                         ]),
                     ),
                 ]
             ),
+            dynamic_column  # 将动态添加控件的容器添加到这里
         ],
         alignment=ft.MainAxisAlignment.START,
         horizontal_alignment=ft.CrossAxisAlignment.START,
-
-    ),
-
-    return column
+    )
+    load_saved_data()
+    return main_column

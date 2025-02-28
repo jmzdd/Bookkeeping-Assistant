@@ -1,9 +1,9 @@
 import flet as ft
 import random
 from pages import data_edit
-from pages import history
+from pages import salary_table
 
-Imgpath = [f"./assets/GIF/0.jpg",
+img_path = [f"./assets/GIF/0.jpg",
         f"./assets/GIF/2.gif",
         f"./assets/GIF/3.gif",
         f"./assets/GIF/4.gif",
@@ -18,14 +18,14 @@ def main(page: ft.Page):
     # 创建页面内容的占位符
     page_content = ft.Column()
     random_number = random.randint(1, 10)
-    text=Imgpath[random_number-1]
+    text=img_path[random_number-1]
 
     # 更新页面内容的函数
     def update_page_content(selected_index: int):
         if selected_index == 0:
             page_content.controls = [data_edit.data_edit_page(page)]
         elif selected_index == 1:
-            page_content.controls = [history.history_page()]
+            page_content.controls = [salary_table.salary_table_page()]
         page.update()
 
     # 应用标题栏
