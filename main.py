@@ -2,6 +2,7 @@ import flet as ft
 import random
 from pages import data_edit
 from pages import salary_table
+from data_manager import DataManager
 
 img_path = [f"./assets/GIF/0.jpg",
         f"./assets/GIF/2.gif",
@@ -20,12 +21,15 @@ def main(page: ft.Page):
     random_number = random.randint(1, 10)
     text=img_path[random_number-1]
 
+    # 初始化 DataManager 实例
+    data_manager = DataManager()
+
     # 更新页面内容的函数
     def update_page_content(selected_index: int):
         if selected_index == 0:
-            page_content.controls = [data_edit.data_edit_page(page)]
+            page_content.controls = [data_edit.data_edit_page(page, data_manager)]
         elif selected_index == 1:
-            page_content.controls = [salary_table.salary_table_page()]
+            page_content.controls = [salary_table.salary_table_page(page, data_manager)]
         page.update()
 
     # 应用标题栏

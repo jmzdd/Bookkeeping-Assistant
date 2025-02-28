@@ -11,10 +11,8 @@ from datetime import datetime
 # # 保存结束时间
 # end_times = []
 
-def data_edit_page(page: ft.Page):
+def data_edit_page(page: ft.Page, data_manager: DataManager):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-
-    data_manager = DataManager()
 
     def select_day(e):
         data_manager.set_work_day(e.control.value.strftime('%Y-%m-%d'))
@@ -44,9 +42,7 @@ def data_edit_page(page: ft.Page):
         new_control = ft.Text(f"于{user_day}, 从{start_time}到{end_time}, 共{hours_diff:.1f}小时")
         test_column.controls.append(new_control)
 
-
-
-        data_manager.add_data(data_manager.time_diffs.append(time_diff), data_manager.work_days.append(user_day), data_manager.start_times.append(start_time), data_manager.end_times.append(end_time))
+        data_manager.add_data(data_manager.time_diffs.append(hours_diff), data_manager.work_days.append(user_day), data_manager.start_times.append(start_time), data_manager.end_times.append(end_time))
         # 将数据保存到全局变量中
         # time_diffs.append(time_diff)
         # work_days.append(user_day)
