@@ -5,20 +5,18 @@ def salary_table_page(page: ft.Page, data_manager: DataManager):
     # 存放每次新建的数据表组件
     data_rows = []
 
-    # 用于存放每次运算出来的日薪
-    hourly_rate_list = []
-
     def load_saved_data():
-        num = len(data_manager.work_days)
-        for temp in range(num):
+        # 清空计算出的日薪列表
+        data_manager.hourly_rate_list.clear()
+
+        for temp in range(len(data_manager.work_days)):
             cell_work_days = ft.DataCell(ft.Text(data_manager.work_days[temp]))
             cell_times = ft.DataCell(ft.Text(f"{data_manager.start_times[temp]}至{data_manager.end_times[temp]}"))
             cell_time_diffs = ft.DataCell(ft.Text(f"共{data_manager.time_diffs[temp]}小时"))
             cell_money = ft.DataCell(ft.Text(f"{float(data_manager.time_diffs[temp])*float(data_manager.get_hourly_rate())}元"))
 
-            # 将所有的日薪全部存在列表中
-            hourly_rate_list.append(float(data_manager.time_diffs[temp])*float(data_manager.get_hourly_rate()))
-
+            # 将计算出的日薪全部存在列表中
+            data_manager.hourly_rate_list.append(float(data_manager.time_diffs[temp])*float(data_manager.get_hourly_rate()))
 
             data_row = ft.DataRow(cells=[
                 cell_work_days,
@@ -40,13 +38,15 @@ def salary_table_page(page: ft.Page, data_manager: DataManager):
         rows=[],
     )
 
+    load_saved_data()
+
     page_info = ft.Column(controls=[
         ft.Text(f"{data_manager.get_name()}的薪资记录表"),
-        ft.Text(f"共{len(data_manager.work_days)}条记录，🪙总计{sum(hourly_rate_list)}元"),
+        ft.Text(f"共{len(data_manager.work_days)}条记录，🪙总计{sum(data_manager.hourly_rate_list)}元"),
         data_table
     ])
 
-    load_saved_data()
+
     page.update()
 
     return page_info

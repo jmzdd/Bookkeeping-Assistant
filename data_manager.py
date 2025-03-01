@@ -8,6 +8,8 @@ class DataManager:
         self.end_time = None
         self.name = ""
         self.hourly_rate = 0
+        self.hourly_rate_list = []
+        self.all_money = 0
         self.time_diffs = []
         self.work_days = []
         self.start_times = []
