@@ -130,6 +130,7 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
                                 leading=ft.Icon(ft.Icons.EMOJI_PEOPLE),
                                 title=ft.TextField(
                                     label="名字",
+                                    value=data_manager.get_name(),
                                     on_change=set_name
                                 ),
                             ),
@@ -137,6 +138,7 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
                                 leading=ft.Icon(ft.Icons.ATTACH_MONEY),
                                 title=ft.TextField(
                                     label="每小时多少钱",
+                                    value=data_manager.get_hourly_rate(),
                                     on_change=set_hourly_rate
                                 ),
                             ),
