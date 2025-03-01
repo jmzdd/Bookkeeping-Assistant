@@ -1,11 +1,13 @@
 # data_manager.py
+import flet as ft
+
 class DataManager:
     def __init__(self):
         self.work_day = None
         self.begin_time = None
         self.end_time = None
-        self.name = None
-        self.hourly_rate = None
+        self.name = ""
+        self.hourly_rate = 0
         self.time_diffs = []
         self.work_days = []
         self.start_times = []
@@ -47,5 +49,8 @@ class DataManager:
         self.start_times.append(start_time)
         self.end_times.append(end_time)
 
-    def get_time_diffs(self):
-        return self.time_diffs
+    def delete_data(self):
+        self.time_diffs.pop()
+        self.work_days.pop()
+        self.start_times.pop()
+        self.end_times.pop()

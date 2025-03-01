@@ -2,15 +2,7 @@ import flet as ft
 from data_manager import DataManager
 from datetime import datetime
 
-# # 保存时间差
-# time_diffs = []
-# # 保存工作日期
-# work_days = []
-# # 保存开始时间
-# start_times = []
-# # 保存结束时间
-# end_times = []
-
+info_column = ft.Column(controls=[])
 def data_edit_page(page: ft.Page, data_manager: DataManager):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
@@ -39,36 +31,29 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
         hours_diff = time_diff.total_seconds() / 3600
 
         # 创建新的控件并添加到 dynamic_column
-        new_control = ft.Text(f"于{user_day}, 从{start_time}到{end_time}, 共{hours_diff:.1f}小时")
-        test_column.controls.append(new_control)
+        new_control = ft.Text(f"📅于{user_day}, ⏲️从{start_time}到{end_time}, ⏰共{hours_diff:.1f}小时, 🪙共{float(hours_diff)*float(data_manager.get_hourly_rate())}元")
+        info_column.controls.append(new_control)
 
-        data_manager.add_data(data_manager.time_diffs.append(hours_diff), data_manager.work_days.append(user_day), data_manager.start_times.append(start_time), data_manager.end_times.append(end_time))
-        # 将数据保存到全局变量中
-        # time_diffs.append(time_diff)
-        # work_days.append(user_day)
-        # start_times.append(start_time)
-        # end_times.append(end_time)
+        data_manager.add_data(hours_diff, user_day, start_time, end_time)
 
         # 更新页面以显示新控件
         page.update()
 
     # 定义删除数据的函数
     def delete_data(e):
-        if test_column.controls:
+        if info_column.controls:
             # 移除最后一个控件
-            test_column.controls.pop()
-            # 移除存储的数据
-            data_manager.time_diffs.pop()
-            data_manager.work_days.pop()
-            data_manager.start_times.pop()
-            data_manager.end_times.pop()
-            # 更新页面以反映更改
-            page.update()
+            info_column.controls.pop()
+        # 移除存储的数据
+        data_manager.delete_data()
+
+        # 更新页面以反映更改
+        page.update()
 
     # 定义清空数据的函数
     def clear_data(e):
         # 清空所有控件
-        test_column.controls.clear()
+        info_column.controls.clear()
         # 清空所有存储的数据
         data_manager.time_diffs.clear()
         data_manager.work_days.clear()
@@ -77,7 +62,11 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
         # 更新页面以反映更改
         page.update()
 
+    def set_name(e):
+        data_manager.set_name(e.control.value)
 
+    def set_hourly_rate(e):
+        data_manager.set_hourly_rate(e.control.value)
 
     end_time_picker = ft.TimePicker(
         confirm_text="确认",
@@ -101,9 +90,6 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
         on_change=select_begin_time,
     )
 
-    # 动态添加控件的容器
-    test_column = ft.Column(controls=[])
-
     dynamic_column = ft.Column(controls=[
         ft.Container(
             content=
@@ -115,7 +101,7 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
                 ]),
                 # 终端容器
                 ft.Container(
-                    content=test_column,
+                    content=info_column,
                     margin=10,
                     padding=10,
                     alignment=ft.alignment.center,
@@ -142,11 +128,17 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
                         content=ft.Column([
                             ft.ListTile(
                                 leading=ft.Icon(ft.Icons.EMOJI_PEOPLE),
-                                title=ft.TextField(label="名字"),
+                                title=ft.TextField(
+                                    label="名字",
+                                    on_change=set_name
+                                ),
                             ),
                             ft.ListTile(
                                 leading=ft.Icon(ft.Icons.ATTACH_MONEY),
-                                title=ft.TextField(label="每小时多少钱"),
+                                title=ft.TextField(
+                                    label="每小时多少钱",
+                                    on_change=set_hourly_rate
+                                ),
                             ),
                             ft.ListTile(
                                 leading=ft.Icon(ft.Icons.ACCESS_TIME),

@@ -10,7 +10,7 @@ def salary_table_page(page: ft.Page, data_manager: DataManager):
             cell_time_diffs = ft.DataCell(data_manager.time_diffs[temp])
             cell_work_days = ft.DataCell(data_manager.work_days[temp])
             cell_start_times = ft.DataCell(data_manager.start_times[temp])
-            cell_end_times = ft.DataCell(data_manager.end_times[temp])
+            cell_money = ft.DataCell(data_manager.end_times[temp])
 
             data_row.cells.append(cell_time_diffs)
             data_row.cells.append(cell_work_days)
