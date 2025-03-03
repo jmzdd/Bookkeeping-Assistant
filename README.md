@@ -1,2 +1,36 @@
-# Bookkeeping-Assistant
-基于Flet开发的小型记账应用
+<div align=center> <img src="./readme/logo.png" width = 15%/> </div>
+
+# <p align="center">米粒小助手</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-Language-blue?logo=python">
+  <img src="https://img.shields.io/badge/Flet-Framework-orange?logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPCEtLSBDcmVhdG9yOiBDb3JlbERSQVcgMjAxNyAtLT4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIzMDdweCIgaGVpZ2h0PSIzMDdweCIgdmVyc2lvbj0iMS4xIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgdGV4dC1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiIgaW1hZ2UtcmVuZGVyaW5nPSJvcHRpbWl6ZVF1YWxpdHkiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIgp2aWV3Qm94PSIwIDAgMjg1IDI4NSIKIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KIDxnIGlkPSJMYXllcl94MDAyMF8xIj4KICA8bWV0YWRhdGEgaWQ9IkNvcmVsQ29ycElEXzBDb3JlbC1MYXllciIvPgogIDxyZWN0IGZpbGw9Im5vbmUiIHdpZHRoPSIyODUiIGhlaWdodD0iMjg1IiByeD0iOS4wMyIgcnk9IjguMTIiLz4KICA8cGF0aCBmaWxsPSIjRUUzMTY3IiBkPSJNMzkuMjggMTQ0Ljc0Yy0wLjg1LC0xLjUyIC0wLjY2LC0yLjYxIDAuMSwtNC4xMyAzMS40MSwtNTguMzYgNzguODEsLTk0LjE1IDEzOC41MywtMTE5Ljc1IDIuMDMsLTAuODYgNS4wNCwxLjUyIDQuMzEsMy42NSAtOC45LDI1LjkxIC0xNS4xOCw1MS4xMyAtMTguODIsNzguMjMgLTMuMzIsMjQuOTcgLTQuMjQsNTAuNzkgLTAuODcsNzcuNzcgMy41NiwzMC41OSAxMC44OCw1NS45OSAxOS42OCw4My4zNiAwLjk4LDMuMDUgLTIuMTQsNC40MyAtNC41MSwzLjI2IC02Mi4xOSwtMzAuNjEgLTEwOS4zMywtNzAuNjUgLTEzOC40MiwtMTIyLjM5eiIvPgogIDxwYXRoIGZpbGw9IiMwMDk4REEiIGZpbGwtb3BhY2l0eT0iMC42MzkyMTYiIGQ9Ik0yMjQuNTMgMTk4LjU5Yy0zNC4zOSwtMTAuNzkgLTY1LjE1LC0yOS4wNiAtOTIuNCwtNTMuMiAtMS44MiwtMS42MiAtMS42MSwtMy44NyAwLjAzLC01LjQ0IDI3LjA3LC0yNS44OCA1Ny43OSwtNDYuMTkgOTEuNzQsLTYwLjU2IDIuOTksLTEuMjcgNS40NSwxLjIgNC41Niw0LjYyIC05LjYyLDM2LjkxIC0xMS43NCw3My4zOSAwLjEzLDEwOS45NSAwLjk4LDMuMDUgLTEuNDcsNS40NCAtNC4wNiw0LjYzeiIvPgogIDxwYXRoIGZpbGw9IiM1QUJBRTciIGQ9Ik0yMjQuNTMgMTk4LjU5Yy0yMi42NCwtNy4xIC00My43MSwtMTcuNDUgLTYzLjI0LC0zMC41OCAtMS4zNSwtMjAuOSAtMS40NywtMzAuMiAwLjczLC01My4yNiAxOS4xOSwtMTQuMjIgMzkuODYsLTI2LjA0IDYxLjg4LC0zNS4zNiAyLjk5LC0xLjI3IDUuNDUsMS4yIDQuNTYsNC42MiAtOS42MiwzNi45MSAtMTEuNzQsNzMuMzkgMC4xMywxMDkuOTUgMC45OCwzLjA1IC0xLjQ3LDUuNDQgLTQuMDYsNC42M3oiLz4KIDwvZz4KPC9zdmc+Cg==">
+</p>
+
+<p align="center" style="font-size: 24px; font-weight: bold;">🎉一个基于Flet的计算小工具🎉</p>
+
+## 一、项目介绍
+
+&emsp;&emsp;本工具使用Flet框架实现，用户可用于计算每天都赚了多少米，时间粒度可精确到小时（目前保留1位小数）。
+
+### 1.1 设计初衷
+
+&emsp;&emsp;家人们在日常生活中难免会需要用计算器计算最近几天赚了多少米粒，虽然市面上已经有计算米粒功能的计算器，但是没有以数据表格的形式生成。为了能够相对清楚地查看用户每日所赚的米粒数量，于是乎米粒小助手应运而生！
+
+### 1.2 项目现状以及特性
+
+&emsp;&emsp;目前本项目已经实现：
+
++ 简单易上手：控件数量少，没有多级菜单，小白也能快速掌握米粒小助手的使用
++ 数据增删清：通过三个按钮用户对每天的时米数进行统计，小助手自动计算用户每日赚取多少米粒
++ 动态数据表生成：用户输入数据的同时，小助手可以自动生成数据表，同时还可计算用户所有天数所赚取的米粒数量
+
+## 二、使用教程
+
+<div align=center> <img src="./readme/项目演示.gif" width = 50%/> </div>
+
+## 三、自编译与修改
+
+&emsp;&emsp;如果不喜欢米粒小助手也不要紧，你可以clone本仓库并自己编译，注意需要先根据Flet文档安装Flet环境，然后运行“main.py”即可。关于如何编译，可以参考[Flet文档](https://flet.dev/docs/publish)。
+
+&emsp;&emsp;米粒小助手的两个页面的控件内容分别是/pages目录下的两个文件。如果想修改页面内容，可以自行修改这两个文件。

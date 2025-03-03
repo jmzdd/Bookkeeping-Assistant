@@ -29,6 +29,9 @@ def salary_table_page(page: ft.Page, data_manager: DataManager):
         data_table.rows.extend(data_rows)
 
     data_table = ft.DataTable(
+        border=ft.border.all(2),
+        border_radius=10,
+        column_spacing=50,
         columns=[
             ft.DataColumn(ft.Text("日期")),
             ft.DataColumn(ft.Text("时间")),
