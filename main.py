@@ -4,16 +4,16 @@ from pages import data_edit
 from pages import salary_table
 from data_manager import DataManager
 
-img_path = [f"./assets/GIF/0.jpg",
-        f"./assets/GIF/2.gif",
-        f"./assets/GIF/3.gif",
-        f"./assets/GIF/4.gif",
-        f"./assets/GIF/5.gif",
-        f"./assets/GIF/6.gif",
-        f"./assets/GIF/7.gif",
-        f"./assets/GIF/8.gif",
-        f"./assets/GIF/9.gif",
-        f"./assets/GIF/10.gif"]
+img_path = [f"./assets/img/0.jpg",
+        f"./assets/img/2.jpg",
+        f"./assets/img/3.jpg",
+        f"./assets/img/4.jpg",
+        f"./assets/img/5.jpg",
+        f"./assets/img/6.jpg",
+        f"./assets/img/7.jpg",
+        f"./assets/img/8.jpg",
+        f"./assets/img/9.jpg",
+        f"./assets/img/10.jpg"]
 def main(page: ft.Page):
     page.scroll= "auto"
     # 创建页面内容的占位符

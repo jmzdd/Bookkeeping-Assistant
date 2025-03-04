@@ -37,4 +37,4 @@
 
 ## 四、声明
 
-&emsp;&emsp;小助手中涉及到的图片均来自网络。
+&emsp;&emsp;小助手中涉及到的图片均来自网络，仓库内的图片的图片来源为[pixabay](https://pixabay.com/zh/images/search/%E7%8C%AB/)
