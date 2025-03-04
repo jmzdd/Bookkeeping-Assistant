@@ -15,6 +15,7 @@ img_path = [f"./assets/img/0.jpg",
         f"./assets/img/9.jpg",
         f"./assets/img/10.jpg"]
 def main(page: ft.Page):
+    page.title = "米粒小助手"
     page.scroll= "auto"
     # 创建页面内容的占位符
     page_content = ft.Column()
@@ -35,7 +36,7 @@ def main(page: ft.Page):
     # 应用标题栏
     page.appbar = ft.AppBar(
         center_title=True,
-        title=ft.Text("记账小助手", weight=ft.FontWeight.BOLD, font_family="MiSans"),
+        title=ft.Text("米粒小助手", weight=ft.FontWeight.BOLD, font_family="MiSans"),
         actions=[
             ft.IconButton(
                 icon=ft.Icons.INFO,
@@ -67,15 +68,24 @@ def main(page: ft.Page):
                     ),
                     ft.TextSpan("构建")
                 ]),
-                ft.Text("由jmzdd用♥为你制作"),
                 ft.Text(spans=[
-                    ft.TextSpan("Github主页："),
+                    ft.TextSpan("由"),
                     ft.TextSpan(
                         "jmzdd",
                         ft.TextStyle(decoration=ft.TextDecoration.UNDERLINE, weight=ft.FontWeight.NORMAL, size=15, color="#5abae7"),
                         url="https://github.com/jmzdd"
                     ),
+                    ft.TextSpan("用♥为你制作"),
                 ]),
+                ft.Text(spans=[
+                    ft.TextSpan("项目主页："),
+                    ft.TextSpan(
+                        "Bookkeeping-Assistant",
+                        ft.TextStyle(decoration=ft.TextDecoration.UNDERLINE, weight=ft.FontWeight.NORMAL, size=15, color="#5abae7"),
+                        url="https://github.com/jmzdd/Bookkeeping-Assistant"
+                    ),
+                ]),
+
                 ft.Text("版本号：v1.0.0", weight=ft.FontWeight.NORMAL, font_family="MiSans")
             ],
             tight=True  # 控件紧密排列，不增加额外间距
@@ -118,7 +128,7 @@ def main(page: ft.Page):
     welcome_page = ft.Stack([
         ft.Container(
             content=ft.Column([
-                ft.Text("欢迎使用记账小助手！", size=25, weight=ft.FontWeight.BOLD, font_family="MiSans"),
+                ft.Text("欢迎使用🍚米粒小助手🍚", size=25, weight=ft.FontWeight.BOLD, font_family="MiSans"),
                 ft.Text("辛苦了一天，记得好好休息哦~", size=15),
                 ft.Image(
                     src=text,

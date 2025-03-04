@@ -31,7 +31,7 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
         hours_diff = time_diff.total_seconds() / 3600
 
         # 创建新的控件并添加到 dynamic_column
-        new_control = ft.Text(f"📅于{user_day}, ⏲️从{start_time}到{end_time}, ⏰共{hours_diff:.1f}小时, 🪙共{float(hours_diff)*float(data_manager.get_hourly_rate())}元")
+        new_control = ft.Text(f"📅于{user_day}, ⏲️从{start_time}到{end_time}, ⏰共{hours_diff:.1f}小时, 🍚共{float(hours_diff)*float(data_manager.get_hourly_rate())}元")
         info_column.controls.append(new_control)
 
         data_manager.add_data(hours_diff, user_day, start_time, end_time)
