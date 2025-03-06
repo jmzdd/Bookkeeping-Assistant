@@ -3,6 +3,7 @@ from data_manager import DataManager
 from datetime import datetime
 
 info_column = ft.Column(controls=[])
+data_column = ft.Column(controls=[])
 def data_edit_page(page: ft.Page, data_manager: DataManager):
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
@@ -15,29 +16,56 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
     def select_end_time(e):
         data_manager.set_end_time(end_time_picker.value)
 
+    # 关闭提示窗口函数
+    def close_windows(e):
+        page.close(cue_window)
+
+    cue_window = ft.AlertDialog(
+        modal=True,
+        title=ft.Text("提示消息"),
+        icon=ft.Icon(name="WARNING", color="yellow"),
+        content=data_column,
+        inset_padding=50,
+        actions=[
+            ft.TextButton("好的", on_click=close_windows),
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+    )
+
     def add_data(e):
         user_day = data_manager.get_work_day()
         start_time = data_manager.get_begin_time()
         end_time = data_manager.get_end_time()
+        data_column.controls.clear()
+        if user_day is None or start_time is None or end_time is None:
+            if user_day is None:
+                data_column.controls.append(ft.Text("请选择日期"))
+            if start_time is None:
+                data_column.controls.append(ft.Text("请选择开始时间"))
+            if end_time is None:
+                data_column.controls.append(ft.Text("请选择结束时间"))
+            data_column.height = 100  # 设置最大高度
+            data_column.expand = False  # 禁用自动扩展
+            page.open(cue_window)
+        else:
+            # 假设今天是基准日期
+            today = datetime.today()
+            start_datetime = datetime.combine(today, start_time)
+            end_datetime = datetime.combine(today, end_time)
 
-        # 假设今天是基准日期
-        today = datetime.today()
-        start_datetime = datetime.combine(today, start_time)
-        end_datetime = datetime.combine(today, end_time)
+            time_diff = end_datetime - start_datetime
 
-        time_diff = end_datetime - start_datetime
+            # 将时间差转换为小时数
+            hours_diff = time_diff.total_seconds() / 3600
 
-        # 将时间差转换为小时数
-        hours_diff = time_diff.total_seconds() / 3600
+            # 创建新的控件并添加到 dynamic_column
+            new_control = ft.Text(f"📅于{user_day}, ⏲️从{start_time}到{end_time}, ⏰共{hours_diff:.1f}小时, 🍚共{float(hours_diff)*float(data_manager.get_hourly_rate())}元")
+            info_column.controls.append(new_control)
 
-        # 创建新的控件并添加到 dynamic_column
-        new_control = ft.Text(f"📅于{user_day}, ⏲️从{start_time}到{end_time}, ⏰共{hours_diff:.1f}小时, 🍚共{float(hours_diff)*float(data_manager.get_hourly_rate())}元")
-        info_column.controls.append(new_control)
+            data_manager.add_data(hours_diff, user_day, start_time, end_time)
 
-        data_manager.add_data(hours_diff, user_day, start_time, end_time)
-
-        # 更新页面以显示新控件
-        page.update()
+            # 更新页面以显示新控件
+            page.update()
 
     # 定义删除数据的函数
     def delete_data(e):
@@ -143,7 +171,7 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
                                 ),
                             ),
                             ft.ListTile(
-                                leading=ft.Icon(ft.Icons.ACCESS_TIME),
+                                # leading=ft.Icon(ft.Icons.ACCESS_TIME),
                                 title=ft.Row([
                                     ft.ElevatedButton(
                                         "设置日期",
@@ -170,7 +198,7 @@ def data_edit_page(page: ft.Page, data_manager: DataManager):
                                         icon=ft.Icons.AV_TIMER,
                                         on_click=lambda _: page.open(end_time_picker),
                                     ),
-                                ]),
+                                ],alignment=ft.MainAxisAlignment.CENTER),
                             ),
                             ft.Divider(height=10, thickness=1),
                             ft.Row([
