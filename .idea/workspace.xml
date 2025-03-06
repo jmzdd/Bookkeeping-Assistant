@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6f5e35c3-2b23-472a-a39f-d45ff4d2ac76" name="更改" comment="更新代码">
+    <list default="true" id="6f5e35c3-2b23-472a-a39f-d45ff4d2ac76" name="更改" comment="优化控件位置并添加提示弹窗">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/data_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/data_edit.py" afterDir="false" />
     </list>
@@ -256,7 +256,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741111100997</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="优化控件位置并添加提示弹窗">
+      <option name="closed" value="true" />
+      <created>1741272263724</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1741272263724</updated>
+    </task>
+    <task id="LOCAL-00024" summary="优化控件位置并添加提示弹窗">
+      <option name="closed" value="true" />
+      <created>1741272269436</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1741272269436</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -290,6 +306,7 @@
     <MESSAGE value="提交应用的基本框架" />
     <MESSAGE value="更新应用" />
     <MESSAGE value="更新代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新代码" />
+    <MESSAGE value="优化控件位置并添加提示弹窗" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化控件位置并添加提示弹窗" />
   </component>
 </project>
